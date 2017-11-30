@@ -63,7 +63,6 @@ float** read_file (unsigned int &rows, unsigned int &columns, char* s) {
 			}
 		}
 	}
-	
 	return matrix;
 }
 
@@ -163,10 +162,10 @@ int main () {
     float **matrix, **matrix1, **matrix2;
     unsigned int rows1, rows2, rows3, columns1, columns2, columns3;
     char op;
-    char *s1, *s2;
+    char *s;
     bool ok=false;
-	s1=read_name_of_file();
-	matrix1=read_file (rows1, columns1, s1);
+	s=read_name_of_file();
+	matrix1=read_file (rows1, columns1, s);
 	cin >> op;
 	if (op == 'T') {
 		rows3=columns1;
@@ -181,8 +180,8 @@ int main () {
 	switch (op){
 		case '+': {
 			bool m=true;
-			s2=read_name_of_file();
-			matrix2=read_file (rows2, columns2, s2);
+			s=read_name_of_file();
+			matrix2=read_file (rows2, columns2, s);
 			ok=sum_matrix(matrix1, rows1, columns1, matrix2, rows2, columns2, matrix, rows3, columns3, m);
 			//write_matrix (matrix2, rows2, columns2);
 			delete_pamyat (matrix2, rows2);
