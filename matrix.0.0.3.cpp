@@ -42,6 +42,7 @@ char* read_name_of_file (void) {
 	string line;
 	getline( cin, line );
 	istringstream stream( line );
+	
 	stream >> s;
 	return s;
 }
@@ -63,6 +64,7 @@ float** read_file (unsigned int &rows, unsigned int &columns, char* s) {
 			}
 		}
 	}
+	fin.close();
 	return matrix;
 }
 
@@ -165,6 +167,7 @@ int main () {
     char *s;
     bool ok=false;
 	s=read_name_of_file();
+	cout << s;
 	matrix1=read_file (rows1, columns1, s);
 	cin >> op;
 	if (op == 'T') {
@@ -190,11 +193,8 @@ int main () {
 		}
 		case '-': {
 			bool m=true;
-			cin >> rows2;
-			op=cin.get();
-			cin >> columns2;
-			matrix2 = pamyat_dlya_matritzi(matrix2, rows2, columns2);
-			matrix2=read_matrix (rows2, columns2, matrix2);
+			s=read_name_of_file();
+			matrix2=read_file (rows2, columns2, s);
 			ok=sub_matrix(matrix1, rows1, columns1, matrix2, rows2, columns2, matrix, rows3, columns3, m);
 			delete_pamyat (matrix2, rows2);
 			if (!m) {cin.get(); return 0;}
@@ -202,11 +202,8 @@ int main () {
 		}
 		case '*': {
 			bool m=true;
-			cin >> rows2;
-			op=cin.get();
-			cin >> columns2;
-			matrix2 = pamyat_dlya_matritzi(matrix2, rows2, columns2);
-			matrix2=read_matrix (rows2, columns2, matrix2);
+			s=read_name_of_file();
+			matrix2=read_file (rows2, columns2, s);
 			ok=mul_matrix (matrix1, rows1, columns1, matrix2, rows2, columns2, matrix, rows3, columns3, m);
 			delete_pamyat (matrix2, rows2);
 			if (!m) {cin.get(); return 0;}
