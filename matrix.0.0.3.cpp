@@ -38,11 +38,11 @@ float ** read_matrix (unsigned int rows, unsigned int columns, float** matrix) {
 }
 
 char* read_name_of_file (void) {
+	char s[5];
 	string line;
 	getline( cin, line );
 	istringstream stream( line );
 	stream >> s;
-
 	return s;
 }
 
@@ -164,13 +164,10 @@ int main () {
     unsigned int rows1, rows2, rows3, columns1, columns2, columns3;
     char op;
     char *s1, *s2;
-    string line;
     bool ok=false;
-    getline( cin, line );
+	s1=read_name_of_file();
 	matrix1=read_file (rows1, columns1, s1);
-	op=cin.get();
 	cin >> op;
-	
 	if (op == 'T') {
 		rows3=columns1;
 		columns3=rows1;
@@ -184,9 +181,10 @@ int main () {
 	switch (op){
 		case '+': {
 			bool m=true;
-			cin >> s2;
+			s2=read_name_of_file();
 			matrix2=read_file (rows2, columns2, s2);
 			ok=sum_matrix(matrix1, rows1, columns1, matrix2, rows2, columns2, matrix, rows3, columns3, m);
+			//write_matrix (matrix2, rows2, columns2);
 			delete_pamyat (matrix2, rows2);
 			if (!m) {cin.get(); return 0;}
 			break;
